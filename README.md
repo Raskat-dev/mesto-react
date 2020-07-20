@@ -21,6 +21,6 @@
 * e-mail: ka-rostislav@yandex.ru
 * tlgrm: @ColdJanuary
 
-#### [Сылка на gh-pages](https://raskat-dev.github.io/mesto/)
+#### [Сылка на gh-pages](https://raskat-dev.github.io/mesto-react/)
 #### [Ссылка на макет в Figma](https://www.figma.com/file/StZjf8HnoeLdiXS7dYrLAh/JavaScript.-Sprint-4)
 #### npm start для запуска
