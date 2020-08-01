@@ -21,6 +21,11 @@
 * e-mail: ka-rostislav@yandex.ru
 * tlgrm: @ColdJanuary
 
+### Планы:
+1. Реализовать полный функционал как в репозитории mesto.
+2. Добавить анимации при загрузке.
+
+
 #### [Сылка на gh-pages](https://raskat-dev.github.io/mesto-react/)
 #### [Ссылка на макет в Figma](https://www.figma.com/file/StZjf8HnoeLdiXS7dYrLAh/JavaScript.-Sprint-4)
 #### npm start для запуска
