@@ -6,9 +6,8 @@ import PopupWithForm from "./PopupWithForm";
 import ImagePopup from "./ImagePopup";
 import EditProfilePopup from "./EditProfilePopup";
 import EditAvatarPopup from "./EditAvatarPopup";
-import { apiRequest } from "../utils/Api";
+import { apiRequest } from "../utils/api";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
-import avatar from "../images/avatar.jpg";
 import AddPlacePopup from "./AddPlacePopup";
 
 function App() {
@@ -19,15 +18,10 @@ function App() {
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = React.useState(
     false
   );
-  const [selectedCard, setSelectedCard] = React.useState(false);
+  const [selectedCard, setSelectedCard] = React.useState(null);
   const [imageData, setImageData] = React.useState({});
 
-  const [currentUser, setCurrentUser] = React.useState({
-    name: "Жак-Ив Кусто",
-    about: "Исследователь океана",
-    avatar: avatar,
-    _id: "",
-  });
+  const [currentUser, setCurrentUser] = React.useState('');
 
   React.useEffect(() => {
     Promise.all([apiRequest.getProfileInfo(), apiRequest.getCardsFromServer()])
@@ -120,15 +114,24 @@ function App() {
     };
     // * Отправляем запрос в API и получаем обновлённые данные карточки
     if (!isLiked) {
-      apiRequest.addLike(card._id).then(apiChangeLike);
+      apiRequest.addLike(card._id).then(apiChangeLike)
+      .catch((err) => {
+        console.log(`Ошибка ${err}.`);
+      });
     } else {
-      apiRequest.deleteLike(card._id).then(apiChangeLike);
+      apiRequest.deleteLike(card._id).then(apiChangeLike)
+      .catch((err) => {
+        console.log(`Ошибка ${err}.`);
+      });
     }
   }
   function handleCardDelete(card) {
     apiRequest.deleteCard(card._id).then(() => {
       const newCards = cards.filter((c) => c._id !== card._id);
       setCards(newCards);
+    })
+    .catch((err) => {
+      console.log(`Ошибка ${err}.`);
     });
   }
 
@@ -136,6 +139,9 @@ function App() {
     apiRequest.addNewCard(newCard).then((result) => {
       setCards([result, ...cards]);
       closeAllPopups();
+    })
+    .catch((err) => {
+      console.log(`Ошибка ${err}.`);
     });
   }
 
