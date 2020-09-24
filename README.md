@@ -20,7 +20,3 @@
 1. Выполнить команду git clone https://github.com/Raskat-dev/mesto-react.git или скачать репозиторий архивом;
 2. Выполнить команду npm start находясь в папке с проектом.
 
-### Контакты:
-* e-mail: ka-rostislav@yandex.ru
-* tlgrm: @ColdJanuary
-
