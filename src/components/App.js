@@ -21,7 +21,7 @@ function App() {
   const [selectedCard, setSelectedCard] = React.useState(null);
   const [imageData, setImageData] = React.useState({});
 
-  const [currentUser, setCurrentUser] = React.useState('');
+  const [currentUser, setCurrentUser] = React.useState("");
 
   React.useEffect(() => {
     Promise.all([apiRequest.getProfileInfo(), apiRequest.getCardsFromServer()])
@@ -49,7 +49,6 @@ function App() {
     setIsAddPlacePopupOpen(true);
   }
   function handleCardClick(card) {
-    setImageData({}); //! если обнулять при закрытии, то картинка исчезает до закрытия анимации
     setImageData(card);
     setSelectedCard(true);
   }
@@ -114,35 +113,43 @@ function App() {
     };
     // * Отправляем запрос в API и получаем обновлённые данные карточки
     if (!isLiked) {
-      apiRequest.addLike(card._id).then(apiChangeLike)
-      .catch((err) => {
-        console.log(`Ошибка ${err}.`);
-      });
+      apiRequest
+        .addLike(card._id)
+        .then(apiChangeLike)
+        .catch((err) => {
+          console.log(`Ошибка ${err}.`);
+        });
     } else {
-      apiRequest.deleteLike(card._id).then(apiChangeLike)
-      .catch((err) => {
-        console.log(`Ошибка ${err}.`);
-      });
+      apiRequest
+        .deleteLike(card._id)
+        .then(apiChangeLike)
+        .catch((err) => {
+          console.log(`Ошибка ${err}.`);
+        });
     }
   }
   function handleCardDelete(card) {
-    apiRequest.deleteCard(card._id).then(() => {
-      const newCards = cards.filter((c) => c._id !== card._id);
-      setCards(newCards);
-    })
-    .catch((err) => {
-      console.log(`Ошибка ${err}.`);
-    });
+    apiRequest
+      .deleteCard(card._id)
+      .then(() => {
+        const newCards = cards.filter((c) => c._id !== card._id);
+        setCards(newCards);
+      })
+      .catch((err) => {
+        console.log(`Ошибка ${err}.`);
+      });
   }
 
   function handleAddPlaceSubmit(newCard) {
-    apiRequest.addNewCard(newCard).then((result) => {
-      setCards([result, ...cards]);
-      closeAllPopups();
-    })
-    .catch((err) => {
-      console.log(`Ошибка ${err}.`);
-    });
+    apiRequest
+      .addNewCard(newCard)
+      .then((result) => {
+        setCards([result, ...cards]);
+        closeAllPopups();
+      })
+      .catch((err) => {
+        console.log(`Ошибка ${err}.`);
+      });
   }
 
   return (
